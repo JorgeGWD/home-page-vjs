@@ -3,11 +3,28 @@ class Carousel extends HTMLElement {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
 
-        const linkElementCss = document.createElement('link');
-        linkElementCss.setAttribute('rel', 'stylesheet');
-        linkElementCss.setAttribute('href', './src/components/carousel/carousel.css');
+        const linkElement = document.createElement('link');
+        linkElement.setAttribute('rel', 'stylesheet');
+        linkElement.setAttribute('href', './src/components/carousel/carousel.css');
+    
+        this.shadowRoot.appendChild(linkElement);
 
-        this.shadowRoot.appendChild(linkElementCss);
+        fetch('https://gradistore-spi.herokuapp.com/products/all')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data received:', data.products.nodes);
+                this.products = data.products.nodes
+                this.render()
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
     }
 
     connectedCallback() {
@@ -16,7 +33,12 @@ class Carousel extends HTMLElement {
 
     render() {
         this.shadow.innerHTML += `
-            <h1>Home page</h1>
+            ${this.products.map(product => `
+                    <div key=${product.id}>
+                        <h1>${product.title}</h1>
+                    </div>
+                `
+            )}
         `
     }
 }
