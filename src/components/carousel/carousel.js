@@ -3,11 +3,11 @@ class Carousel extends HTMLElement {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
 
-        const linkElement = document.createElement('link');
-        linkElement.setAttribute('rel', 'stylesheet');
-        linkElement.setAttribute('href', './src/components/carousel/carousel.css');
-    
-        this.shadowRoot.appendChild(linkElement);
+        const linkElementCss = document.createElement('link');
+        linkElementCss.setAttribute('rel', 'stylesheet');
+        linkElementCss.setAttribute('href', './src/components/carousel/carousel.css');
+
+        this.shadowRoot.appendChild(linkElementCss);
     }
 
     connectedCallback() {
