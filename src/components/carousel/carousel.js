@@ -1,3 +1,5 @@
+import '../commons/button/button.js';
+
 class Carousel extends HTMLElement {
     constructor() {
         super();
@@ -18,12 +20,12 @@ class Carousel extends HTMLElement {
                 return response.json();
             })
             .then(data => {
-                console.log('Data received:', data.products.nodes);
-                this.products = data.products.nodes
+                console.log(data.products.nodes);
+                this.products = data.products.nodes.slice(0, 6)
                 this.render()
             })
             .catch(error => {
-                console.error('Error fetching data:', error);
+                console.error(error);
             });
     }
 
@@ -33,12 +35,25 @@ class Carousel extends HTMLElement {
 
     render() {
         this.shadow.innerHTML += `
-            ${this.products.map(product => `
-                    <div key=${product.id}>
-                        <h1>${product.title}</h1>
-                    </div>
-                `
-            )}
+            <section class="carousel">
+                <div class="carousel__top">
+                    <h2>Discover our <br> planet-friendly offer</h2>
+                </div>
+                <div class="carousel__slider">
+                    ${this.products.map(product => `
+                            <div class="carousel__slider-card" key=${product.id}>
+                                <div class="carousel__slider-card-body" style="background-image:url(${product.featuredImage.url})">
+                                <my-button text="See more" class="__secondary"></my-button>
+                                </div>
+                                <p>${product.title}</p>
+                            </div>
+                        `
+                    ).join('')}
+                </div>
+                <div class="carousel__bottom">
+                    <my-button text="Browse all products" class="__principal"></my-button>
+                </div>
+            </section>
         `
     }
 }
