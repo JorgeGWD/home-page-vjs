@@ -29,6 +29,7 @@ button.__secondary {
   flex-direction: column;
   gap: 80px;
   padding: 50px 0px;
+  margin-bottom: 120px;
 }
 .carousel__top {
   max-width: 1200px;
