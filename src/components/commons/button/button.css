@@ -13,15 +13,19 @@ input:focus, textarea:focus, select:focus, button:focus {
   outline: 0px;
 }
 
-button {
+button.__principal {
   color: #fff;
   background-color: #EFA693;
 }
+button.__secondary {
+  color: #EFA693;
+  background-color: #fff;
+}
+
 button {
   padding: 15px 30px;
   font-size: 14px;
   text-transform: uppercase;
   border-radius: 50px;
-  border: 1px solid #EFA693;
   cursor: pointer;
 }/*# sourceMappingURL=button.css.map */
