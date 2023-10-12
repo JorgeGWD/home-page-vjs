@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500;600;700;800&display=swap");
+h1, h2, h3, h4, h5, h6, p, ul, ol, li, span {
+  margin: 0px;
+  padding: 0px;
+}
+
+button, input {
+  border: 0px;
+}
+
+input:focus, textarea:focus, select:focus, button:focus {
+  outline: 0px;
+}
+
+button {
+  color: #fff;
+  background-color: #EFA693;
+}
+button {
+  padding: 15px 30px;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  border: 1px solid #EFA693;
+  cursor: pointer;
+}/*# sourceMappingURL=button.css.map */
