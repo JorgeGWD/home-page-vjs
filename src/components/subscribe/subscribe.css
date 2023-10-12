@@ -13,11 +13,10 @@ input:focus, textarea:focus, select:focus, button:focus {
   outline: 0px;
 }
 
-.principal {
+button {
   color: #fff;
   background-color: #EFA693;
 }
-
 .subscribe {
   display: flex;
   flex-direction: column;
