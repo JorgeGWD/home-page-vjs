@@ -12,7 +12,13 @@ input:focus, textarea:focus, select:focus, button:focus {
   outline: 0px;
 }
 
-button {
+button.__principal {
   color: #fff;
   background-color: #EFA693;
+  border: 1px solid #EFA693;
+}
+button.__secondary {
+  color: #EFA693;
+  background-color: #fff;
+  border: 1px solid #fff;
 }/*# sourceMappingURL=main.css.map */
