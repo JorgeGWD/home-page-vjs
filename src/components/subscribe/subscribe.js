@@ -1,8 +1,10 @@
+import '../commons/button/button.js';
+
 class Suscribe extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
-
+        
         const linkElement = document.createElement('link');
         linkElement.setAttribute('rel', 'stylesheet');
         linkElement.setAttribute('href', './src/components/subscribe/subscribe.css');
@@ -22,7 +24,7 @@ class Suscribe extends HTMLElement {
                     <p>If you are missing something and don't want to miss future promotions or our future products</p>
                     <form>
                         <input type="email" placeholder="Your Email" />
-                        <button value="Send">Send</button>
+                        <my-button text="Send" class="__principal"></my-button>
                     </form>
                 </div>
             </section>
