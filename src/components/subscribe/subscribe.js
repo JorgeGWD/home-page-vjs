@@ -16,7 +16,16 @@ class Suscribe extends HTMLElement {
 
     return() {
         this.shadow.innerHTML += `
-            <h1>subscribe</h1>
+            <section class="subscribe">
+                <div class="subscribe__content">
+                    <h2>Join the green revolution without commitment</h2>
+                    <p>If you are missing something and don't want to miss future promotions or our future products</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" />
+                        <button value="Send">Send</button>
+                    </form>
+                </div>
+            </section>
         `
     }
 }
