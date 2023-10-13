@@ -76,6 +76,9 @@ button.__secondary {
   justify-content: space-between;
   color: #939393;
 }
+.carousel__slider-card-footer-info-ranking {
+  font-size: 14px;
+}
 .carousel__slider-card-footer-info-offer {
   display: flex;
   gap: 10px;
@@ -94,7 +97,14 @@ button.__secondary {
 }
 
 @media (max-width: 650px) {
+  .carousel {
+    gap: 40px;
+  }
   .carousel h2 {
     font-size: 28px;
+  }
+  .carousel__slider-card-footer-info {
+    flex-direction: column;
+    gap: 10px;
   }
 }/*# sourceMappingURL=carousel.css.map */

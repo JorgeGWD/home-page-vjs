@@ -48,7 +48,7 @@ class Carousel extends HTMLElement {
                             <div class="carousel__slider-card-footer">
                                 <p>${product.title}</p>
                                 <div class="carousel__slider-card-footer-info">
-                                    <span class="carousel__slider-card-footer-ranking">
+                                    <span class="carousel__slider-card-footer-info-ranking">
                                         ${this.getStarRating(product.tag)} (${product.tags[0]})
                                     </span>
                                     <div class="carousel__slider-card-footer-info-offer">
