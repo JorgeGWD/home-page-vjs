@@ -38,6 +38,7 @@
             line-height: 200%
         form
             display: flex
+            align-items: center
             gap: 5px
             input
                 flex: 1
@@ -70,3 +71,19 @@
     color: $soft-gray
     border-radius: 4px
     cursor: pointer
+
+@media (max-width: 650px)
+    .subscribe
+        &__content
+            h2
+                font-size: 28px
+            p
+                width: 70%
+            form
+                flex-direction: column
+                gap: 10px
+                width: 100%
+                input
+                    width: 80%
+                button
+                    width: 50%

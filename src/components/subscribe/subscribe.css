@@ -66,6 +66,7 @@ button.__secondary {
 }
 .subscribe__content form {
   display: flex;
+  align-items: center;
   gap: 5px;
 }
 .subscribe__content form input {
@@ -101,4 +102,24 @@ button.__secondary {
   color: #939393;
   border-radius: 4px;
   cursor: pointer;
+}
+
+@media (max-width: 650px) {
+  .subscribe__content h2 {
+    font-size: 28px;
+  }
+  .subscribe__content p {
+    width: 70%;
+  }
+  .subscribe__content form {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  .subscribe__content form input {
+    width: 80%;
+  }
+  .subscribe__content form button {
+    width: 50%;
+  }
 }/*# sourceMappingURL=subscribe.css.map */

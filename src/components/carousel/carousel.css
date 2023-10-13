@@ -69,4 +69,10 @@ button.__secondary {
   justify-content: center;
   width: 95%;
   margin: auto;
+}
+
+@media (max-width: 650px) {
+  .carousel h2 {
+    font-size: 28px;
+  }
 }/*# sourceMappingURL=carousel.css.map */
