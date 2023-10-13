@@ -24,6 +24,7 @@
             flex-direction: column
             gap: 20px
             p
+                font-size: 18px
                 font-weight: bolder
             &-body
                 display: flex
@@ -34,6 +35,22 @@
                 height: 300px
                 background-color: $soft-pink
                 border-radius: 15px
+            &-footer
+                display: flex
+                flex-direction: column
+                gap: 10px
+                font-size: 15px
+                &-info
+                    display: flex
+                    justify-content: space-between
+                    color: $soft-gray
+                    &-offer
+                        display: flex
+                        gap: 10px
+                        &-max
+                            text-decoration: line-through
+                        &-min
+                            color: #000
     &__bottom
         display: flex
         justify-content: center
