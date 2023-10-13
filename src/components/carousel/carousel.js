@@ -42,8 +42,9 @@ class Carousel extends HTMLElement {
                 <div class="carousel__slider">
                     ${this.products.map(product => `
                         <div class="carousel__slider-card" key=${product.id}>
-                            <div class="carousel__slider-card-body" style="background-image:url(${product.featuredImage.url})">
-                                <my-button text="See more" class="__secondary"></my-button>
+                            <div class="carousel__slider-card-body">
+                                <img src="${product.featuredImage.url}" />
+                                <my-button text="See more" class="__secondary carousel__slider-card-button"></my-button>
                             </div>
                             <div class="carousel__slider-card-footer">
                                 <p>${product.title}</p>
