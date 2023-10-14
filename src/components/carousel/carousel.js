@@ -1,88 +1,132 @@
-import '../commons/button/button.js';
-
 class Carousel extends HTMLElement {
     constructor() {
-        super();
-        this.shadow = this.attachShadow({ mode: 'open' });
-
-        const linkElement = document.createElement('link');
-        linkElement.setAttribute('rel', 'stylesheet');
-        linkElement.setAttribute('href', './src/components/carousel/carousel.css');
-    
-        this.shadowRoot.appendChild(linkElement);
-
-        fetch('https://gradistore-spi.herokuapp.com/products/all')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-
-                return response.json();
-            })
-            .then(data => {
-                console.log(data.products.nodes);
-                this.products = data.products.nodes.slice(0, 6)
-                this.render()
-            })
-            .catch(error => {
-                console.error(error);
-            });
+      super();
+      this.shadow = this.attachShadow({ mode: 'open' });
+      this.currentIndex = 0;
+  
+      const linkElement = document.createElement('link');
+      linkElement.setAttribute('rel', 'stylesheet');
+      linkElement.setAttribute('href', './src/components/carousel/carousel.css');
+      this.shadowRoot.appendChild(linkElement);
+  
+      fetch('https://gradistore-spi.herokuapp.com/products/all')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log(data.products.nodes);
+          // Duplica los primeros 10 productos al final de la lista
+          this.products = [...data.products.nodes, ...data.products.nodes.slice(0, 10)];
+          this.render();
+          this.addEventListeners();
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
-
+  
     connectedCallback() {
-        this.render();
+      this.render();
+      this.addEventListeners();
     }
-
+  
     render() {
-        this.shadow.innerHTML += `
-            <section class="carousel">
-                <div class="carousel__top">
-                    <h2>Discover our <br> planet-friendly offer</h2>
+      this.shadow.innerHTML += `
+        <section class="carousel">
+          <div class="carousel__top">
+            <h2>Discover our <br> planet-friendly offer</h2>
+            <div class="carousel__top-buttons">
+                <my-button class="__carousel carousel__button" data-action="prev"></my-button>
+                <my-button class="__carousel carousel__button" data-action="next"></my-button>
+            </div>
+          </div>
+          <div class="carousel__slider">
+            ${this.products.map((product, index) => `
+              <div class="carousel__slider-card" data-index=${index} key=${product.id}>
+                <div class="carousel__slider-card-body">
+                  <img src="${product.featuredImage.url}" />
+                  <my-button text="See more" class="__secondary carousel__slider-card-button"></my-button>
                 </div>
-                <div class="carousel__slider">
-                    ${this.products.map(product => `
-                        <div class="carousel__slider-card" key=${product.id}>
-                            <div class="carousel__slider-card-body">
-                                <img src="${product.featuredImage.url}" />
-                                <my-button text="See more" class="__secondary carousel__slider-card-button"></my-button>
-                            </div>
-                            <div class="carousel__slider-card-footer">
-                                <p>${product.title}</p>
-                                <div class="carousel__slider-card-footer-info">
-                                    <span class="carousel__slider-card-footer-info-ranking">
-                                        ${this.getStarRating(product.tag)} (${product.tags[0]})
-                                    </span>
-                                    <div class="carousel__slider-card-footer-info-offer">
-                                        <span class="carousel__slider-card-footer-info-offer-max">${product.prices.max.amount}</span>
-                                        <span class="carousel__slider-card-footer-info-offer-min">${product.prices.min.amount}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `).join('')}
+                <div class="carousel__slider-card-footer">
+                  <p>${product.title}</p>
+                  <div class="carousel__slider-card-footer-info">
+                    <span class="carousel__slider-card-footer-info-ranking">
+                      ${this.getStarRating(product.tag)} (${product.tags[0]})
+                    </span>
+                    <div class="carousel__slider-card-footer-info-offer">
+                      <span class="carousel__slider-card-footer-info-offer-max">${product.prices.max.amount}</span>
+                      <span class="carousel__slider-card-footer-info-offer-min">${product.prices.min.amount}</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="carousel__bottom">
-                    <my-button text="Browse all products" class="__principal"></my-button>
-                </div>
-            </section>
-        `;
+              </div>
+            `).join('')}
+          </div>
+          <div class="carousel__bottom">
+            <my-button text="Browse all products" class="__principal"></my-button>
+          </div>
+        </section>
+      `;
     }
-
+  
+    addEventListeners() {
+      const prevButton = this.shadow.querySelector('.carousel__button[data-action="prev"]');
+      const nextButton = this.shadow.querySelector('.carousel__button[data-action="next"]');
+  
+      prevButton.addEventListener('click', () => this.showPrevious());
+      nextButton.addEventListener('click', () => this.showNext());
+    }
+  
+    showPrevious() {
+      if (this.currentIndex > 0) {
+        this.currentIndex--;
+        this.updateSlider();
+      }
+    }
+  
+    showNext() {
+      if (this.currentIndex < this.products.length - 1) {
+        this.currentIndex++;
+        this.updateSlider();
+      }
+    }
+  
+    updateSlider() {
+      const slider = this.shadow.querySelector('.carousel__slider');
+      const cardWidth = this.shadow.querySelector('.carousel__slider-card').offsetWidth;
+  
+      let newPosition;
+      if (this.currentIndex === this.products.length - 1) {
+        // Si estamos en el último producto, volvemos al principio sin animación
+        newPosition = 0;
+        slider.style.transition = 'none';
+      } else {
+        newPosition = -1 * this.currentIndex * cardWidth;
+        slider.style.transition = 'transform 0.5s ease-in-out';
+      }
+  
+      slider.style.transform = `translateX(${newPosition}px)`;
+    }
+  
     getStarRating(puntuacion) {
-        if (0 <= puntuacion <= 100) {
-            return "⭐";
-        } else if (100 < puntuacion <= 200) {
-            return "⭐⭐";
-        } else if (200 < puntuacion <= 300) {
-            return "⭐⭐⭐";
-        } else if (300 < puntuacion <= 400) {
-            return "⭐⭐⭐⭐";
-        } else if (400 < puntuacion <= 500) {
-            return "⭐⭐⭐⭐⭐";
-        } else {
-            return "Puntuación fuera de rango";
-        }
+      if (0 <= puntuacion <= 100) {
+        return "⭐";
+      } else if (100 < puntuacion <= 200) {
+        return "⭐⭐";
+      } else if (200 < puntuacion <= 300) {
+        return "⭐⭐⭐";
+      } else if (300 < puntuacion <= 400) {
+        return "⭐⭐⭐⭐";
+      } else if (400 < puntuacion <= 500) {
+        return "⭐⭐⭐⭐⭐";
+      } else {
+        return "Puntuación fuera de rango";
+      }
     }
-}
-
-customElements.define('my-carousel', Carousel);
+  }
+  
+  customElements.define('my-carousel', Carousel);
+  

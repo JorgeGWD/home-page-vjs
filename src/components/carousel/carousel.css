@@ -23,6 +23,11 @@ button.__secondary {
   background-color: #fff;
   border: 1px solid #fff;
 }
+button.__carousel {
+  color: #fff;
+  background-color: #FFDCD3;
+  border: 1px solid #FFDCD3;
+}
 
 .carousel {
   display: flex;
@@ -30,8 +35,11 @@ button.__secondary {
   gap: 80px;
   padding: 50px 0px;
   margin-bottom: 120px;
+  overflow: hidden;
 }
 .carousel__top {
+  display: flex;
+  justify-content: space-between;
   max-width: 1200px;
   width: 85%;
   margin: auto;
@@ -41,10 +49,18 @@ button.__secondary {
   font-size: 44px;
   line-height: 150%;
 }
+.carousel__top-buttons {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
 .carousel__slider {
   display: flex;
   gap: 20px;
+  width: fit-content;
+  width: -moz-fit-content;
   overflow: hidden;
+  transition: transform 0.5s ease-in-out;
 }
 .carousel__slider-card {
   position: relative;
