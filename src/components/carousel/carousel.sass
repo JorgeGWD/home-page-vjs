@@ -79,9 +79,15 @@
     bottom: 15px
     width: 90%
 
+.carousel__button
+    position: relative
+
 @media (max-width: 650px)
     .carousel
         gap: 40px
+        &__top
+            flex-direction: column
+            gap: 20px
         h2
             font-size: 28px
         &__slider

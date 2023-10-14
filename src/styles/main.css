@@ -24,7 +24,7 @@ button.__secondary {
   border: 1px solid rgba(255, 255, 255, 0.8);
 }
 button.__carousel {
-  color: #fff;
+  width: 80px;
   background-color: #FFDCD3;
   border: 1px solid #FFDCD3;
 }/*# sourceMappingURL=main.css.map */

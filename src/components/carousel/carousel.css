@@ -125,9 +125,17 @@ button.__carousel {
   width: 90%;
 }
 
+.carousel__button {
+  position: relative;
+}
+
 @media (max-width: 650px) {
   .carousel {
     gap: 40px;
+  }
+  .carousel__top {
+    flex-direction: column;
+    gap: 20px;
   }
   .carousel h2 {
     font-size: 28px;

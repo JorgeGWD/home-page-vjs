@@ -39,8 +39,8 @@ class Carousel extends HTMLElement {
           <div class="carousel__top">
             <h2>Discover our <br> planet-friendly offer</h2>
             <div class="carousel__top-buttons">
-                <my-button class="__carousel carousel__button" data-action="prev"></my-button>
-                <my-button class="__carousel carousel__button" data-action="next"></my-button>
+                <my-button src="../../../src/assets/images/prev.png" class="__carousel carousel__button" data-action="prev"></my-button>
+                <my-button src="../../../src/assets/images/next.png" class="__carousel carousel__button" data-action="next"></my-button>
             </div>
           </div>
           <div class="carousel__slider">
