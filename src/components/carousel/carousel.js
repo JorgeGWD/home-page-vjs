@@ -81,52 +81,52 @@ class Carousel extends HTMLElement {
     }
   
     showPrevious() {
-      if (this.currentIndex > 0) {
-        this.currentIndex--;
-        this.updateSlider();
-      }
+        if (this.currentIndex > 0) {
+            this.currentIndex--;
+            this.updateSlider();
+        }
     }
   
     showNext() {
-      if (this.currentIndex < this.products.length - 1) {
-        this.currentIndex++;
-        this.updateSlider();
-      }
+        if (this.currentIndex < this.products.length - 1) {
+            this.currentIndex++;
+            this.updateSlider();
+        }
     }
   
     updateSlider() {
-      const slider = this.shadow.querySelector('.carousel__slider');
-      const cardWidth = this.shadow.querySelector('.carousel__slider-card').offsetWidth;
-  
-      let newPosition;
-      if (this.currentIndex === this.products.length - 1) {
-        // Si estamos en el último producto, volvemos al principio sin animación
-        newPosition = 0;
-        slider.style.transition = 'none';
-      } else {
-        newPosition = -1 * this.currentIndex * cardWidth;
-        slider.style.transition = 'transform 0.5s ease-in-out';
-      }
-  
-      slider.style.transform = `translateX(${newPosition}px)`;
+        const slider = this.shadow.querySelector('.carousel__slider');
+        const cardWidth = this.shadow.querySelector('.carousel__slider-card').offsetWidth;
+    
+        let newPosition;
+        if (this.currentIndex === this.products.length - 1) {
+            // Si estamos en el último producto, volvemos al principio sin animación
+            newPosition = 0;
+            slider.style.transition = 'none';
+        } else {
+            newPosition = -1 * this.currentIndex * cardWidth;
+            slider.style.transition = 'transform 0.5s ease-in-out';
+        }
+    
+        slider.style.transform = `translateX(${newPosition}px)`;
     }
   
     getStarRating(puntuacion) {
-      if (0 <= puntuacion <= 100) {
-        return "⭐";
-      } else if (100 < puntuacion <= 200) {
-        return "⭐⭐";
-      } else if (200 < puntuacion <= 300) {
-        return "⭐⭐⭐";
-      } else if (300 < puntuacion <= 400) {
-        return "⭐⭐⭐⭐";
-      } else if (400 < puntuacion <= 500) {
-        return "⭐⭐⭐⭐⭐";
-      } else {
-        return "Puntuación fuera de rango";
-      }
+        if (0 <= puntuacion <= 100) {
+            return "⭐";
+        } else if (100 < puntuacion <= 200) {
+            return "⭐⭐";
+        } else if (200 < puntuacion <= 300) {
+            return "⭐⭐⭐";
+        } else if (300 < puntuacion <= 400) {
+            return "⭐⭐⭐⭐";
+        } else if (400 < puntuacion <= 500) {
+            return "⭐⭐⭐⭐⭐";
+        } else {
+            return "Puntuación fuera de rango";
+        }
     }
-  }
+}
   
   customElements.define('my-carousel', Carousel);
   
