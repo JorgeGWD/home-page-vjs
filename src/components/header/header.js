@@ -1,7 +1,7 @@
 class Header extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({ mode: 'open' });
+        this.attachShadow({ mode: 'open' });
 
         const linkElement = document.createElement('link');
         linkElement.setAttribute('rel', 'stylesheet');
@@ -16,7 +16,7 @@ class Header extends HTMLElement {
     }
 
     render() {
-        this.shadow.innerHTML += `
+        this.shadowRoot.innerHTML += `
             <header>
                 <h3>Gratis verzending vanaf €30</h3>
             </header>

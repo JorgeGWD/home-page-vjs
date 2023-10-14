@@ -1,7 +1,7 @@
 class Carousel extends HTMLElement {
     constructor() {
       super();
-      this.shadow = this.attachShadow({ mode: 'open' });
+      this.attachShadow({ mode: 'open' });
       this.currentIndex = 0;
   
       const linkElement = document.createElement('link');
@@ -34,7 +34,7 @@ class Carousel extends HTMLElement {
     }
   
     render() {
-      this.shadow.innerHTML += `
+      this.shadowRoot.innerHTML += `
         <section class="carousel">
           <div class="carousel__top">
             <h2>Discover our <br> planet-friendly offer</h2>
@@ -103,7 +103,7 @@ class Carousel extends HTMLElement {
     
         let newPosition;
         if (this.currentIndex === this.products.length - 1) {
-            // Si estamos en el último producto, volvemos al principio sin animación
+            // If we are in the last product, we return to the beginning without animation
             newPosition = 0;
             slider.style.transition = 'none';
         } else {
@@ -116,7 +116,7 @@ class Carousel extends HTMLElement {
   
     getStarRating(starsPoints) {
         if (0 <= starsPoints && starsPoints <= 500) {
-            const numberOfStars = Math.ceil(starsPoints / 100); // Calcula el número de estrellas necesarias
+            const numberOfStars = Math.ceil(starsPoints / 100); // Calculate the number of stars needed
             const starImage = '<img src="../../../src/assets/images/star.png" alt="star">';
             return starImage.repeat(numberOfStars);
         } else {
