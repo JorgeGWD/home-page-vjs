@@ -19,9 +19,10 @@ button.__principal {
   border: 1px solid #EFA693;
 }
 button.__secondary {
+  width: 100%;
   color: #EFA693;
-  background-color: #fff;
-  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 button.__carousel {
   color: #fff;
@@ -97,6 +98,8 @@ button.__carousel {
   color: #939393;
 }
 .carousel__slider-card-footer-info-ranking {
+  display: flex;
+  gap: 5px;
   font-size: 14px;
 }
 .carousel__slider-card-footer-info-offer {

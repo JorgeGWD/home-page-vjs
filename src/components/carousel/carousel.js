@@ -53,9 +53,12 @@ class Carousel extends HTMLElement {
                 <div class="carousel__slider-card-footer">
                   <p>${product.title}</p>
                   <div class="carousel__slider-card-footer-info">
-                    <span class="carousel__slider-card-footer-info-ranking">
-                      ${this.getStarRating(product.tag)} (${product.tags[0]})
-                    </span>
+                    <div class="carousel__slider-card-footer-info-ranking">
+                      <span class="carousel__slider-card-footer-info-ranking-stars">
+                        ${this.getStarRating(product.tags[0])}
+                      </span>
+                      (${product.tags[0]})
+                    </div>
                     <div class="carousel__slider-card-footer-info-offer">
                       <span class="carousel__slider-card-footer-info-offer-max">${product.prices.max.amount}</span>
                       <span class="carousel__slider-card-footer-info-offer-min">${product.prices.min.amount}</span>
@@ -111,17 +114,11 @@ class Carousel extends HTMLElement {
         slider.style.transform = `translateX(${newPosition}px)`;
     }
   
-    getStarRating(puntuacion) {
-        if (0 <= puntuacion <= 100) {
-            return "⭐";
-        } else if (100 < puntuacion <= 200) {
-            return "⭐⭐";
-        } else if (200 < puntuacion <= 300) {
-            return "⭐⭐⭐";
-        } else if (300 < puntuacion <= 400) {
-            return "⭐⭐⭐⭐";
-        } else if (400 < puntuacion <= 500) {
-            return "⭐⭐⭐⭐⭐";
+    getStarRating(starsPoints) {
+        if (0 <= starsPoints && starsPoints <= 500) {
+            const numberOfStars = Math.ceil(starsPoints / 100); // Calcula el número de estrellas necesarias
+            const starImage = '<img src="../../../src/assets/images/star.png" alt="star">';
+            return starImage.repeat(numberOfStars);
         } else {
             return "Puntuación fuera de rango";
         }
