@@ -30,7 +30,7 @@ class Button extends HTMLElement {
 
     updateButton() {
         // Property types
-        const text = this.getAttribute('text') || 'Send';
+        const text = this.getAttribute('text') || '';
         const buttonClass = this.getAttribute('class') || ''; 
         const buttonType = this.getAttribute('type') || 'button';
 
