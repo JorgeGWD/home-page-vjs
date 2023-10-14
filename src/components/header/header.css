@@ -23,6 +23,11 @@ button.__secondary {
   background-color: #fff;
   border: 1px solid #fff;
 }
+button.__carousel {
+  color: #fff;
+  background-color: #FFDCD3;
+  border: 1px solid #FFDCD3;
+}
 
 header {
   padding: 20px;
