@@ -38,8 +38,8 @@ class Carousel extends HTMLElement {
             <div class="carousel__top">
             <h2>Discover our <br> planet-friendly offer</h2>
             <div class="carousel__top-buttons">
-                <my-button src="../../../src/assets/images/prev.png" class="__carousel carousel__button" data-action="prev"></my-button>
-                <my-button src="../../../src/assets/images/next.png" class="__carousel carousel__button" data-action="next"></my-button>
+                <my-button src="./src/assets/images/prev.png" class="__carousel carousel__button" data-action="prev"></my-button>
+                <my-button src="./src/assets/images/next.png" class="__carousel carousel__button" data-action="next"></my-button>
             </div>
             </div>
             <div class="carousel__slider">
@@ -116,7 +116,7 @@ class Carousel extends HTMLElement {
     getStarRating(starsPoints) {
         if (0 <= starsPoints && starsPoints <= 500) {
         const numberOfStars = Math.ceil(starsPoints / 100); // Calculate the number of stars needed
-        const starImage = '<img src="../../../src/assets/images/star.png" alt="star">';
+        const starImage = '<img src="./src/assets/images/star.png" alt="star">';
         return starImage.repeat(numberOfStars);
         } else {
         return "Puntuación fuera de rango";

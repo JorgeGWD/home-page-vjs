@@ -5,7 +5,7 @@ class Button extends HTMLElement {
 
         const linkElement = document.createElement('link');
         linkElement.setAttribute('rel', 'stylesheet');
-        linkElement.setAttribute('href', '../../../../src/components/commons/button/button.css');
+        linkElement.setAttribute('href', './src/components/commons/button/button.css');
 
         this.shadowRoot.appendChild(linkElement);
 
